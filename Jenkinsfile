@@ -32,8 +32,15 @@ pipeline{
                         (credentialsId: 'docker-cred', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                         sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                         sh 'docker push ${registry}:${BUILD_ID}'
-                    }
                 }
+            }
+        }
+        stage('Deploy to EKS'){
+            steps{
+              sh '''
+              pwd
+              '''
+            }
         }
     }
 }
