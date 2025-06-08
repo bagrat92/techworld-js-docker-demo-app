@@ -21,7 +21,7 @@ pipeline{
         stage('Building image'){
             steps{
                 sh '''
-                  docker build -t ${registry}:${BUILD_ID} .
+                  docker build -t ${registry}:latest .
                 '''
             }
         }
@@ -31,7 +31,7 @@ pipeline{
                     [usernamePassword
                         (credentialsId: 'docker-cred', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                         sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                        sh 'docker push ${registry}:${BUILD_ID}'
+                        sh 'docker push ${registry}:latest'
                 }
             }
         }
@@ -45,6 +45,7 @@ pipeline{
               kubectl apply -f secret.yaml
               kubectl apply -f mongo-deployment.yaml
               kubectl apply -f mongo-express.yaml
+              kubectl apply -f app-deployment.yaml
               '''
             }
         }
