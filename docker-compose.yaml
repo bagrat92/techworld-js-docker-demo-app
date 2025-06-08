@@ -7,7 +7,7 @@ services:
     image: bagrat92/my-app:1.0
     ports:
       - 3000:3000
-    
+
     networks:
       - mongo
 
@@ -20,9 +20,14 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
       - mongo-data:/data/db
-    
+
     networks:
       - mongo
+
+      - db-data:/data/db
+    # networks:
+    #   - mongo-db
+
 
   mongo-express:
     image: mongo-express
@@ -35,7 +40,7 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongodb
       - ME_CONFIG_MONGODB_URL=mongodb://admin:secret@mongodb:27017/
       - ME_CONFIG_BASICAUTH=false
-    
+
     networks:
       - mongo
 

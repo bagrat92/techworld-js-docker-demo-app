@@ -19,15 +19,18 @@ Step 2: start mongodb
 
     docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network mongo    
 
-Step 3: start mongo-express   
-
-        docker run -d -p 8081:8081 --net mongo-network \
-            -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
-            -e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
-            -e ME_CONFIG_MONGODB_SERVER=mongodb \
-            -e ME_CONFIG_MONGODB_URL=mongodb://admin:password@mongodb:27017/ \
-            -e ME_CONFIG_BASICAUTH=false \
-            mongo-express
+Step 3: start mongo-express
+    
+    docker run -d -p 8081:8081 \
+    --net mongo-network \
+    --name mongo-express \
+    -e ME_CONFIG_MONGODB_SERVER=mongodb \
+    -e ME_CONFIG_BASICAUTH_USERNAME=admin \
+    -e ME_CONFIG_BASICAUTH_PASSWORD=admin \
+    -e ME_CONFIG_MONGODB_ENABLE_ADMIN=false \
+    -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+    -e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+    mongo-express
 
 
 _NOTE: creating docker-network in optional. You can start both containers in a default network. In this case, just emit `--net` flag in `docker run` command_
