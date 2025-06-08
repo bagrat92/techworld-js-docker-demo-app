@@ -39,6 +39,7 @@ pipeline{
             steps{
               sh '''
               pwd
+              ls -la
               '''
             }
         }
