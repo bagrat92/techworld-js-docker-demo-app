@@ -32,6 +32,7 @@ Step 3: start mongo-express
     -e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
     mongo-express
 
+
 _NOTE: creating docker-network in optional. You can start both containers in a default network. In this case, just emit `--net` flag in `docker run` command_
 
 Step 4: open mongo-express from browser

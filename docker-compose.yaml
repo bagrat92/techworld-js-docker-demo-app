@@ -1,13 +1,15 @@
-version: '3'
+version: '3.7'
+
 services:
 
-  my-app
-    image: bagrat92/nodejs-project:$1
+  my-app:
+    build: .
+    image: bagrat92/my-app:1.0
     ports:
       - 3000:3000
-    # networks:
-    #   - mongo-db
 
+    networks:
+      - mongo
 
   mongodb:
     image: mongo
@@ -17,6 +19,11 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
+      - mongo-data:/data/db
+
+    networks:
+      - mongo
+
       - db-data:/data/db
     # networks:
     #   - mongo-db
@@ -31,13 +38,17 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
-    # networks:
-    #   - mongo-db
-      
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:secret@mongodb:27017/
+      - ME_CONFIG_BASICAUTH=false
+
+    networks:
+      - mongo
+
 volumes:
-  db-data:
+  mongo-data:
     driver: local
 
-# networks:
-#   mongo-db:
-#     driver: bridge
+networks:
+  mongo:
+    name: mongo-network
+    driver: bridge
