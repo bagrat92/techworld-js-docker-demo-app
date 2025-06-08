@@ -13,7 +13,7 @@ pipeline{
             steps{
                 script {
                     git branch: 'master',
-                        credentialsId: 'github_key',
+                        credentialsId: 'github-ssh-key',
                         url: 'git@github.com:bagrat92/techworld-js-docker-demo-app.git'
                 }
             }
