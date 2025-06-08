@@ -38,9 +38,8 @@ pipeline{
         stage('Deploy to EKS'){
             steps{
               sh '''
-              pwd
+              aws eks --region eu-central-1 update-kubeconfig --name devops
               cd kube/
-              ls -la
 
               kubectl apply -f mongo-configmap.yaml
 //               kubectl apply -f secret.yaml
