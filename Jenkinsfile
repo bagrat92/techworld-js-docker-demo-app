@@ -42,9 +42,9 @@ pipeline{
               cd kube/
 
               kubectl apply -f mongo-configmap.yaml
-//               kubectl apply -f secret.yaml
-//               kubectl apply -f deployment.yaml
-//               kubectl apply -f mongo-express.yaml
+              kubectl apply -f secret.yaml
+              kubectl apply -f deployment.yaml
+              kubectl apply -f mongo-express.yaml
               '''
             }
         }
