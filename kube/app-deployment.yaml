@@ -35,5 +35,5 @@ spec:
   - name: app-listener
     protocol: TCP
     targetPort: 3000
-    port: 80
-  type: LoadBalancer
+    port: 3000
+  type: NodePort
