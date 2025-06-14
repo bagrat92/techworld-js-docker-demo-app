@@ -21,7 +21,6 @@ pipeline{
         stage('Building image'){
             steps{
                 sh '''
-                  sudo chmod 666 /var/run/docker.sock
                   docker build -t ${registry}:latest .
                 '''
             }
