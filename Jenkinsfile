@@ -7,7 +7,6 @@ pipeline{
     environment {
         registry = "bagrat92/myapp"
     }
-
     stages{
         stage ('Pull Code from GitHub'){
             steps{
