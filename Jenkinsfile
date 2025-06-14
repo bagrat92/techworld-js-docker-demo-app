@@ -21,7 +21,7 @@ pipeline{
         stage('Building image'){
             steps{
                 sh '''
-                  docker build -t ${registry}:latest .
+                  docker build -t ${registry}:2.0.1 .
                 '''
             }
         }
@@ -31,7 +31,7 @@ pipeline{
                     [usernamePassword
                         (credentialsId: 'docker-cred', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                         sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                        sh 'docker push ${registry}:latest'
+                        sh 'docker push ${registry}:2.0.1'
                 }
             }
         }

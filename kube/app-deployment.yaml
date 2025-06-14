@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: k8s-web
-        image: bagrat92/myapp:latest
+        image: bagrat92/myapp:2.0.1
         ports:
         - containerPort: 3000
 
